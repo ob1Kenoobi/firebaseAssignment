@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "323362359211",
+    "project_id": "testostaad",
+    "storage_bucket": "testostaad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323362359211:android:b78712ee7e5b0006dab4ee",
+        "android_client_info": {
+          "package_name": "io.inifinitiloom.match_score_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUfBGQlTwJtjcoU8nN0i5QGOjIJXRhVBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
