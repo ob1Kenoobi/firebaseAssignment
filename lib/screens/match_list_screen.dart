@@ -14,15 +14,21 @@ class MatchListScreen extends StatelessWidget {
         stream: FirebaseFirestore.instance.collection('matches').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
 
           if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
           }
 
-          if (!snapshot.hasData || snapshot.data == null) {
-            return Text('No data available');
+          if (!snapshot.hasData || snapshot.data == null || snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text('No matches available'),
+            );
           }
 
           var matches = snapshot.data!.docs.map((doc) => Match.fromMap(doc.data() as Map<String, dynamic>)).toList();
@@ -31,16 +37,21 @@ class MatchListScreen extends StatelessWidget {
             itemCount: matches.length,
             itemBuilder: (context, index) {
               var match = matches[index];
-              return ListTile(
-                title: Text(match.name),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MatchDetailsScreen(match: match),
-                    ),
-                  );
-                },
+              return Card(
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: ListTile(
+                  title: Text(match.name),
+                  //subtitle: Text('Goals: ${match.goals}, Running Time: ${match.runningTime}, Total Time: ${match.totalTime}'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MatchDetailsScreen(match: match),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           );

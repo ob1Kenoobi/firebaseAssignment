@@ -1,6 +1,6 @@
 class Match {
   final String name;
-  final int goals;
+  final String goals;
   final String runningTime;
   final String totalTime;
 
@@ -13,10 +13,10 @@ class Match {
 
   factory Match.fromMap(Map<String, dynamic> data) {
     return Match(
-      name: data['name'],
-      goals: data['goals'],
-      runningTime: data['running_time'],
-      totalTime: data['total_time'],
+      name: data['name'] ?? '',
+      goals: data['goals'] ?? '',
+      runningTime: data['running_time'] ?? '',
+      totalTime: data['total_time'] ?? '',
     );
   }
 

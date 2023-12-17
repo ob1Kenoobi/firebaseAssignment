@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:match_score_app/models/match.dart';
 
+
 class MatchDetailsScreen extends StatelessWidget {
   final Match match;
 
@@ -10,17 +11,46 @@ class MatchDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Match Details'),
+        title: Text(match.name),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('Match: ${match.name}'),
-          Text('Goals: ${match.goals}'),
-          Text('Running Time: ${match.runningTime}'),
-          Text('Total Time: ${match.totalTime}'),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        match.name,
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey,),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        match.goals,
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Running Time: ${match.runningTime}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Total Time: ${match.totalTime}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
